@@ -36,8 +36,43 @@ Trello is great for organizing partnership pipelines and project tracking, but e
 ### 1. Export your Trello board to JSON
 
 Go to your Trello board → top-right menu → **More** → **Print and Export** → **Export JSON**.
+### 2. Customize code
 
-### 2. Run the script
+To run this script locally, you’ll need to make a few small adjustments:
+
+- Set the input file path
+
+  - By default, the script looks for a Trello JSON export at: 
+  ```python
+  example_data/trello_export.json
+  ```
+  - If your file is in a different location, either:
+  
+    - Pass the path as a command-line argument:
+  ```python
+  python trello_status_reporter.py /path/to/your/export.json
+  ```
+  
+    - Or update the fallback path directly in the script (in the main() function).
+
+- Update the target Trello lists
+
+  - Inside the script, there’s a variable called `target_lists`. This controls which Trello lists will be included in the output report.
+```python
+target_lists = ["List1", "List2", "List3", "List4"]
+```
+
+  - Replace these with the exact names of the lists on your Trello board (e.g., "In Progress", "Done").
+
+- (Optional) Rename the output file
+
+  - By default, the script creates a Word document called:
+```
+trello_status_report.docx
+```
+
+  - You can change this by editing the output_path variable in the main() function.
+### 3. Run the script
 
 ```bash
 python trello_status_reporter.py /path/to/your/trello_export.json
